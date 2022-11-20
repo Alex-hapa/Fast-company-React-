@@ -5,14 +5,23 @@ import SearchStatus from "./components/searchStatus";
 
 function App() {
     const [users, setUsers] = useState(api.users.fetchAll());
-    console.log(users);
-    const handleDelete = (userId) => {
+    const updateData = (userId) => {
         setUsers(users.filter((user) => user._id !== userId));
-    };
+    }
+	const handleFavorite = (userId) => {
+		const updatedUsers = users.map((user) => {
+			if (user._id === userId) {
+				user.bookmark = !user.bookmark;
+			}
+			return user;
+		})
+		setUsers(updatedUsers)
+	}
 
     return (
         <div>
-            1
+            <SearchStatus users={users}/>
+            <Users users={users} updateData={updateData} onFavorite= {handleFavorite}/>
         </div>
     );    
 }
