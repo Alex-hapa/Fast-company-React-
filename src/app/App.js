@@ -5,23 +5,24 @@ import SearchStatus from "./components/searchStatus";
 
 function App() {
     const [users, setUsers] = useState(api.users.fetchAll());
-    const updateData = (userId) => {
+    const handleDelete = (userId) => {
         setUsers(users.filter((user) => user._id !== userId));
-    }
-	const handleFavorite = (userId) => {
-		const updatedUsers = users.map((user) => {
-			if (user._id === userId) {
-				user.bookmark = !user.bookmark;
-			}
-			return user;
-		})
-		setUsers(updatedUsers)
-	}
+    };
+    const handleToggleBookMark = (id) => {
+        setUsers(
+            users.map((user) => {
+                if (user._id === id) {
+                    return { ...user, bookmark: !user.bookmark };
+                }
+                return user;
+            })
+        );        
+    };
 
     return (
         <div>
-            <SearchStatus users={users}/>
-            <Users users={users} updateData={updateData} onFavorite= {handleFavorite}/>
+            <SearchStatus length={users.length}/>
+            <Users onDelete={handleDelete} onToggleBookMark={handleToggleBookMark} users={users}/>
         </div>
     );    
 }
