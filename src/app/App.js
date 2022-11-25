@@ -16,15 +16,19 @@ function App() {
                 }
                 return user;
             })
-        );        
+        );
     };
 
     return (
         <div>
-            <SearchStatus length={users.length}/>
-            <Users onDelete={handleDelete} onToggleBookMark={handleToggleBookMark} users={users}/>
+            <SearchStatus length={users.length} />
+            <Users
+                onDelete={handleDelete}
+                onToggleBookMark={handleToggleBookMark}
+                users={users}
+            />
         </div>
-    );    
+    );
 }
 
 export default App;

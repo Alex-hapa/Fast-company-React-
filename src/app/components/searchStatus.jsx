@@ -1,7 +1,6 @@
-import React from 'react';
+import React from "react";
 
 const SearchStatus = ({ length }) => {
-
     const renderPhrase = (number) => {
         const lastOne = Number(number.toString().slice(-1));
         if (number > 4 && number < 15) return "человек тусанет";
@@ -20,7 +19,7 @@ const SearchStatus = ({ length }) => {
                     : "Никто с тобой не тусанет"}
             </span>
         </h2>
-    )
+    );
 };
 
 export default SearchStatus;
