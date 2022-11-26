@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const BookMark = ({ status, ...rest }) => {
     return (
@@ -7,5 +8,6 @@ const BookMark = ({ status, ...rest }) => {
         </button>
     );
 };
+BookMark.propTypes = { status: PropTypes.node.isRequired };
 
 export default BookMark;
