@@ -8,6 +8,6 @@ const BookMark = ({ status, ...rest }) => {
         </button>
     );
 };
-BookMark.propTypes = { status: PropTypes.node.isRequired };
+BookMark.propTypes = { status: PropTypes.bool.isRequired };
 
 export default BookMark;
