@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { paginate } from "../utils/paginate";
 import Pagination from "./pagination";
 import User from "./user";
-import PropTypes from "prop-types";
-import api from "../api";
 import GroupList from "./groupList";
+import api from "../api";
 import SearchStatus from "./searchStatus";
 
-const Users = ({ users, ...rest }) => {
-    const pageSize = 2;
-    const [professions, setProfession] = useState();
+const Users = ({ users: allUsers, ...rest }) => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [professions, setProfessions] = useState();
     const [selectedProf, setSelectedProf] = useState();
+    const pageSize = 2;
+
     useEffect(() => {
-        api.professions.fetchAll().then((data) => setProfession(data));
+        api.professions.fetchAll().then((data) => setProfessions(data));
     }, []);
+
     useEffect(() => {
         setCurrentPage(1);
     }, [selectedProf]);
@@ -22,22 +24,25 @@ const Users = ({ users, ...rest }) => {
     const handleProfessionSelect = (item) => {
         setSelectedProf(item);
     };
-
     const handlePageChange = (pageIndex) => {
         setCurrentPage(pageIndex);
     };
+
     const filteredUsers = selectedProf
-        ? users.filter((user) => user.profession === selectedProf)
-        : users;
+        ? allUsers.filter((user) => JSON.stringify(user.profession) === JSON.stringify(selectedProf))
+        : allUsers;
     const count = filteredUsers.length;
-    const userCrop = paginate(filteredUsers, currentPage, pageSize);
+
+    const usersCrop = paginate(filteredUsers, currentPage, pageSize);
+
     const clearFilter = () => {
         setSelectedProf();
     };
+
     return (
         <div className="d-flex">
             {professions && (
-                <div className="d-flex flex-column flex-shrink-0 p-3">
+                <div className="d-flex flex-column flex-shrink-1 p-3">
                     <GroupList
                         selectedItem={selectedProf}
                         items={professions}
@@ -51,7 +56,7 @@ const Users = ({ users, ...rest }) => {
                     </button>
                 </div>
             )}
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column flex-fill">
                 <SearchStatus length={count} />
                 {count > 0 && (
                     <table className="table">
@@ -59,7 +64,7 @@ const Users = ({ users, ...rest }) => {
                             <tr>
                                 <th scope="col">Имя</th>
                                 <th scope="col">Качества</th>
-                                <th scope="col">Провфессия</th>
+                                <th scope="col">Профессия</th>
                                 <th scope="col">Встретился, раз</th>
                                 <th scope="col">Оценка</th>
                                 <th scope="col">Избранное</th>
@@ -67,12 +72,13 @@ const Users = ({ users, ...rest }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {userCrop.map((user) => (
-                                <User key={user._id} {...rest} {...user} />
+                            {usersCrop.map((user) => (
+                                <User {...rest} {...user} key={user._id} />
                             ))}
                         </tbody>
                     </table>
                 )}
+
                 <div className="d-flex justify-content-center">
                     <Pagination
                         itemsCount={count}
@@ -85,6 +91,8 @@ const Users = ({ users, ...rest }) => {
         </div>
     );
 };
-Users.propTypes = { users: PropTypes.arrayOf(PropTypes.object).isRequired };
+Users.propTypes = {
+    users: PropTypes.array
+};
 
 export default Users;
