@@ -1,7 +1,7 @@
 {
     "name": "fast-company",
     "version": "0.1.0",
-    "homepage": "https://Alex-hapa.github.io/react-gh-pages",
+    "homepage": "https://Alex-hapa.github.io/fast-company-react-",
     "private": true,
     "dependencies": {
         "@testing-library/jest-dom": "^5.16.5",
