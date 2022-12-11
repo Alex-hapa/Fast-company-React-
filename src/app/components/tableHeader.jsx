@@ -2,6 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const TableHeader = ({ onSort, selectedSort, columns }) => {
+    const sortArrow = (column) => {
+        if (selectedSort.path === columns[column].path) {
+            if (selectedSort.order === "asc") {
+                return <i className="bi bi-caret-up-fill"></i>;
+            }
+            if (selectedSort.order === "desc") {
+                return <i className="bi bi-caret-down-fill"></i>;
+            }
+        }
+        return "";
+    };
     const handleSort = (item) => {
         if (selectedSort.path === item) {
             onSort({
@@ -26,23 +37,10 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
                         {...{ role: columns[column].path && "button" }}
                         scope="col"
                     >
-                        {columns[column].name}
+                        {columns[column].name}{" "}
+                        {columns[column].path ? sortArrow(column) : ""}
                     </th>
                 ))}
-                {/*
-                <th scope="col">Качества</th>
-                <th onClick={() => handleSort("profession.name")} scope="col">
-                    Профессия
-                </th>
-                <th onClick={() => handleSort("completedMeetings")} scope="col">
-                    Встретился, раз
-                </th>
-                <th onClick={() => handleSort("rate")} scope="col">
-                    Оценка
-                </th>
-                <th onClick={() => handleSort("bookmark")} scope="col">
-                    Избранное
-                </th> */}
                 <th />
             </tr>
         </thead>
