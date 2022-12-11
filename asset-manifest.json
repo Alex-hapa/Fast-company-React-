@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-gh-pages/static/css/main.28cb4b2c.css",
-    "main.js": "/react-gh-pages/static/js/main.295822ba.js",
-    "static/js/787.4d212c3f.chunk.js": "/react-gh-pages/static/js/787.4d212c3f.chunk.js",
-    "index.html": "/react-gh-pages/index.html",
-    "main.28cb4b2c.css.map": "/react-gh-pages/static/css/main.28cb4b2c.css.map",
-    "main.295822ba.js.map": "/react-gh-pages/static/js/main.295822ba.js.map",
-    "787.4d212c3f.chunk.js.map": "/react-gh-pages/static/js/787.4d212c3f.chunk.js.map"
+    "main.css": "/fast-company-react-/static/css/main.28cb4b2c.css",
+    "main.js": "/fast-company-react-/static/js/main.3ad02319.js",
+    "static/js/787.4d212c3f.chunk.js": "/fast-company-react-/static/js/787.4d212c3f.chunk.js",
+    "index.html": "/fast-company-react-/index.html",
+    "main.28cb4b2c.css.map": "/fast-company-react-/static/css/main.28cb4b2c.css.map",
+    "main.3ad02319.js.map": "/fast-company-react-/static/js/main.3ad02319.js.map",
+    "787.4d212c3f.chunk.js.map": "/fast-company-react-/static/js/787.4d212c3f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.28cb4b2c.css",
-    "static/js/main.295822ba.js"
+    "static/js/main.3ad02319.js"
   ]
 }
