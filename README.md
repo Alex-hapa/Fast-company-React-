@@ -1,2 +1,2 @@
 # fast-company-react-
-https://Alex-hapa.github.io/react-gh-pages
+https://Alex-hapa.github.io/fast-company-react-
