@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { paginate } from "../utils/paginate";
-import Pagination from "./pagination";
-import GroupList from "./groupList";
+import Pagination from "../components/pagination";
+import GroupList from "../components/groupList";
 import api from "../api";
-import SearchStatus from "./searchStatus";
-import UserTable from "./usersTable";
+import SearchStatus from "../components/searchStatus";
+import UserTable from "../components/usersTable";
 import _ from "lodash";
+import UserPage from "../components/userPage";
+import { useParams } from "react-router-dom";
 
 const Users = () => {
+    const params = useParams();
+    const { userId } = params;
     const [currentPage, setCurrentPage] = useState(1);
     const [professions, setProfessions] = useState();
     const [selectedProf, setSelectedProf] = useState();
@@ -69,6 +73,10 @@ const Users = () => {
         const clearFilter = () => {
             setSelectedProf();
         };
+
+        if (userId) {
+            return <UserPage userId={userId} />;
+        }
 
         return (
             <div className="d-flex">

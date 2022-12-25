@@ -2,6 +2,7 @@ import React from "react";
 import Quality from "./quality";
 import BookMark from "./bookmark";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const User = ({
     _id,
@@ -16,7 +17,9 @@ const User = ({
 }) => {
     return (
         <tr>
-            <td>{name}</td>
+            <td>
+                <Link to={"/users/" + _id}>{name}</Link>
+            </td>
             <td>
                 {qualities.map((qual) => (
                     <Quality key={qual._id} {...qual} />
